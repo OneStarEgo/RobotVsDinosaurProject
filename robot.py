@@ -9,5 +9,5 @@ class Robot:
 
     def attack(self, dinosaur):
         print(f"{self.name} blasts its opponent with a {self.active_weapon.name} for {self.active_weapon.attack_power} damage.")
-        dinosaur.hp -= self.active_weapon.attack_power
+        self.dinosaur.hp -= self.active_weapon.attack_power
         

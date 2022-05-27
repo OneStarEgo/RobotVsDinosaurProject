@@ -1,18 +1,17 @@
 from robot import Robot
 from dinosaur import Dinosaur
 
-dinosaur = Dinosaur("BlackTooth", "Tail Whip", 75)
-robot = Robot("CX5")
+
 class Battlefield:
     def __init__(self):
+        self.dinosaur = Dinosaur("BlackTooth", "Tail Whip", 75)
+        self.robot = Robot("CX5")
         print("Now entering The Battle Zone")
     
     def run_game(self):
         self.display_welcome()
-        self.introduce_fighters(robot, dinosaur)
+        self.introduce_fighters(self.robot, self.dinosaur)
         self.battle_phase()
-        self.robot_turn(robot, dinosaur)
-        self.dinosaur_turn(robot, dinosaur)
         # self.display_winner()
     
     def display_welcome(self):
@@ -28,14 +27,25 @@ class Battlefield:
     
     def battle_phase(self):
         print("Let the battle begin")
+        # if you call the dino and robot turns here it would make sense to have them in a while loop
+        # while the dino health AND robot health are greater than 0 loop
+        while self.dinosaur.hp > 0 and self.robot.hp > 0:
+            self.robot_turn("CX5", "BlackTooth")
+            if self.dinosaur.hp < 0:
+                print("robot dead")
+            # may need "if" to check that everybody is still alive before this step
+            self.dinosaur_turn("BlackTooth", "CX5")
+            if self.robot.hp < 0:
+                print("dinosaur dead")
+
 
     def robot_turn(self, robot, dinosaur):
-        robot.attack
+        self.robot.attack(dinosaur)
         if dinosaur.hp <= 0:
             print(f"{robot.name}'s hp is now {robot.hp}!")
 
     def dinosaur_turn(self, robot, dinosaur):
-        dinosaur.attack
+        self.dinosaur.attack(robot)
         if robot.hp <= 0:
             print(f"{dinosaur.name}'s hp is now {dinosaur.hp}!")
     

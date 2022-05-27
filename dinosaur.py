@@ -9,6 +9,6 @@ class Dinosaur:
     
     def attack(self, robot):
         print(f"{self.name} lands a vicious {self.attack_name} on it opponent for {self.attack_power} damage!")
-        robot.hp -= self.attack_power
+        self.robot.hp -= self.attack_power
 
 
