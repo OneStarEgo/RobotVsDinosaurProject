@@ -12,7 +12,7 @@ class Battlefield:
         self.display_welcome()
         self.introduce_fighters(self.robot, self.dinosaur)
         self.battle_phase()
-        # self.display_winner()
+        self.display_winner()
     
     def display_welcome(self):
         print("-------Welcome! This evening we have a treat for you all!-------")
@@ -37,10 +37,8 @@ class Battlefield:
             # may need "if" to check that everybody is still alive before this step
             self.dinosaur_turn()
             if self.robot.hp == 0:
-                print("CX5 has been destroyed! ")
+                print("CX5 has been destroyed!")
                 break
-                
-
 
     def robot_turn(self):
         self.robot.attack(self.dinosaur)
@@ -53,7 +51,9 @@ class Battlefield:
         if self.robot.hp <= 0:
             print(f"{self.dinosaur.name}'s hp is now {self.dinosaur.hp}!")
         
-    
-
-
+    def display_winner(self):
+        if self.dinosaur.hp == 0:
+            print(f"{self.robot.name} has won the bout!")
+        else:
+            print(f"{self.dinosaur.name} is the victor!")
 
