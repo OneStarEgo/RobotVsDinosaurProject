@@ -30,24 +30,29 @@ class Battlefield:
         # if you call the dino and robot turns here it would make sense to have them in a while loop
         # while the dino health AND robot health are greater than 0 loop
         while self.dinosaur.hp > 0 and self.robot.hp > 0:
-            self.robot_turn("CX5", "BlackTooth")
-            if self.dinosaur.hp < 0:
-                print("robot dead")
+            self.robot_turn()
+            if self.dinosaur.hp == 0:
+                print("BlackTooth has been slain")
+                break
             # may need "if" to check that everybody is still alive before this step
-            self.dinosaur_turn("BlackTooth", "CX5")
-            if self.robot.hp < 0:
-                print("dinosaur dead")
+            self.dinosaur_turn()
+            if self.robot.hp == 0:
+                print("CX5 has been destroyed! ")
+                break
+                
 
 
-    def robot_turn(self, robot, dinosaur):
-        self.robot.attack(dinosaur)
-        if dinosaur.hp <= 0:
-            print(f"{robot.name}'s hp is now {robot.hp}!")
+    def robot_turn(self):
+        self.robot.attack(self.dinosaur)
+        if self.dinosaur.hp <= 0:
+            print(f"{self.robot.name}'s hp is now {self.robot.hp}!")
+        
 
-    def dinosaur_turn(self, robot, dinosaur):
-        self.dinosaur.attack(robot)
-        if robot.hp <= 0:
-            print(f"{dinosaur.name}'s hp is now {dinosaur.hp}!")
+    def dinosaur_turn(self):
+        self.dinosaur.attack(self.robot)
+        if self.robot.hp <= 0:
+            print(f"{self.dinosaur.name}'s hp is now {self.dinosaur.hp}!")
+        
     
 
 

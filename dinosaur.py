@@ -5,10 +5,11 @@ class Dinosaur:
         self.name = name
         self.attack_power = attack_power
         self.attack_name = attack_name
-        self.hp = 500
+        self.hp = 300
     
     def attack(self, robot):
         print(f"{self.name} lands a vicious {self.attack_name} on it opponent for {self.attack_power} damage!")
-        self.robot.hp -= self.attack_power
+        robot.hp -= self.attack_power
+        print(f"{robot.name}'s hp is now {robot.hp}")
 
 
